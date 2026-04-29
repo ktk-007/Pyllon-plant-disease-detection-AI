@@ -1,0 +1,16 @@
+torch
+torchvision
+timm
+albumentations
+opencv-python-headless
+streamlit
+anthropic
+scikit-learn
+numpy
+Pillow
+matplotlib
+seaborn
+tensorboard
+google-genai>=0.8.0
+groq
+python-dotenv

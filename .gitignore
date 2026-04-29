@@ -1,0 +1,15 @@
+venv/
+data/
+models/
+__pycache__/
+*.pyc
+.env
+runs/
+*.pth
+*.pt
+*.onnx
+scratch/
+class_labels/*.json
+*.zip
+*.tar.gz
+.DS_Store

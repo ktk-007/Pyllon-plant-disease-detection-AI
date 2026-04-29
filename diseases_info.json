@@ -1,0 +1,314 @@
+{
+  "tomato_bacterial_spot": {
+    "disease_type": "Bacterial",
+    "probable_cause": ["Xanthomonas vesicatoria bacteria", "High humidity and warm temperatures", "Splashing rain or overhead irrigation"],
+    "prevention": ["Use certified disease-free seeds", "Practice crop rotation", "Avoid overhead watering", "Ensure good air circulation"],
+    "treatment": ["Apply copper-based bactericides early in the season", "Remove and destroy infected plant debris"],
+    "about": "Bacterial spot is a devastating disease of tomatoes causing small, water-soaked spots on leaves that turn brown and lead to defoliation. It also causes scabby, dark lesions on the fruit.",
+    "external_links": [{"label": "PlantVillage", "url": "https://plantvillage.psu.edu/topics/tomato/infos"}]
+  },
+  "tomato_early_blight": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Alternaria linariae fungus", "Warm, humid weather", "Poor air circulation"],
+    "prevention": ["Rotate crops", "Stake plants to improve air flow", "Water at the base of the plant", "Mulch to prevent soil splash"],
+    "treatment": ["Apply organic or synthetic fungicides", "Remove lower infected leaves"],
+    "about": "Early blight causes dark, concentric rings (bullseye pattern) on older leaves. It often leads to yellowing of surrounding tissue and premature leaf drop.",
+    "external_links": [{"label": "PlantVillage", "url": "https://plantvillage.psu.edu/topics/tomato/infos"}]
+  },
+  "tomato_healthy": {
+    "disease_type": "None",
+    "probable_cause": ["Good agricultural practices", "Optimal watering and nutrition"],
+    "prevention": ["Maintain current care routine"],
+    "treatment": ["None needed"],
+    "about": "The plant appears perfectly healthy with vibrant green foliage and no visible signs of pathogen or pest damage.",
+    "external_links": []
+  },
+  "tomato_late_blight": {
+    "disease_type": "Oomycete (Water Mold)",
+    "probable_cause": ["Phytophthora infestans", "Cool, wet weather conditions"],
+    "prevention": ["Plant resistant varieties", "Ensure excellent drainage and spacing", "Destroy volunteer tomato/potato plants"],
+    "treatment": ["Apply protectant fungicides (chlorothalonil or copper)", "Infected plants must be destroyed immediately"],
+    "about": "Late blight is highly destructive, causing large, dark, water-soaked lesions on leaves and stems, and firm, brown, irregular lesions on fruit.",
+    "external_links": [{"label": "PlantVillage", "url": "https://plantvillage.psu.edu/topics/tomato/infos"}]
+  },
+  "tomato_septoria_leaf_spot": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Septoria lycopersici fungus", "Extended periods of leaf wetness", "Contaminated garden equipment"],
+    "prevention": ["Water at the base to keep foliage dry", "Clean garden tools", "Remove weed hosts"],
+    "treatment": ["Use fungicidal sprays", "Remove heavily infected lower leaves"],
+    "about": "Septoria leaf spot presents as numerous small, circular spots with dark borders and gray centers on the lower leaves.",
+    "external_links": [{"label": "PlantVillage", "url": "https://plantvillage.psu.edu/topics/tomato/infos"}]
+  },
+  "tomato_yellow_leaf_curl_virus": {
+    "disease_type": "Viral",
+    "probable_cause": ["Begomovirus transmitted by silverleaf whiteflies"],
+    "prevention": ["Control whitefly populations", "Use reflective mulches", "Plant resistant varieties", "Use insect-excluding screens"],
+    "treatment": ["No cure exists for infected plants", "Remove and destroy symptomatic plants to prevent spread"],
+    "about": "This viral infection causes severe stunting, upward curling and yellowing of leaf margins, significantly reducing fruit yield.",
+    "external_links": [{"label": "PlantVillage", "url": "https://plantvillage.psu.edu/topics/tomato/infos"}]
+  },
+  "mango_anthracnose": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Colletotrichum gloeosporioides fungus", "High rainfall and humidity during flowering/fruiting"],
+    "prevention": ["Prune canopy for better aeration", "Field sanitation", "Select resistant cultivars"],
+    "treatment": ["Pre-harvest fungicidal sprays (copper, mancozeb)", "Post-harvest hot water treatment of fruit"],
+    "about": "Anthracnose is the most serious disease of mangoes, causing dark, irregular lesions on leaves, blossom blight, and sunken black spots on ripening fruit.",
+    "external_links": [{"label": "CABI", "url": "https://www.cabi.org/isc/datasheet/14916"}]
+  },
+  "mango_bacterial_canker": {
+    "disease_type": "Bacterial",
+    "probable_cause": ["Xanthomonas campestris pv. mangiferaeindicae", "Wind-driven rain", "Contaminated pruning tools"],
+    "prevention": ["Establish windbreaks", "Sterilize tools", "Prune out diseased branches during dry weather"],
+    "treatment": ["Copper-based bactericides can suppress symptoms but not cure the tree"],
+    "about": "Causes raised, angular, black lesions with water-soaked margins on leaves, and star-shaped cracking lesions on fruit and twigs.",
+    "external_links": []
+  },
+  "mango_gall_midge": {
+    "disease_type": "Pest-induced",
+    "probable_cause": ["Procontarinia spp. (tiny flies)", "Eggs laid in young leaf tissue"],
+    "prevention": ["Monitor flushes of new growth", "Protect natural predators"],
+    "treatment": ["Systemic insecticides during new leaf flush", "Prune and burn heavily galled leaves"],
+    "about": "Larvae feeding inside the leaf tissue cause the formation of small, raised, pimple-like galls on the leaves, leading to leaf distortion and drop.",
+    "external_links": []
+  },
+  "mango_powdery_mildew": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Oidium mangiferae fungus", "Cool, dry weather with high morning humidity"],
+    "prevention": ["Avoid overly dense canopies", "Monitor weather conditions during flowering"],
+    "treatment": ["Apply sulfur or systemic fungicides at first sign of infection"],
+    "about": "Characterized by a white, powdery fungal growth on leaves, inflorescences, and young fruit, often causing massive flower and fruit drop.",
+    "external_links": []
+  },
+  "mango_sooty_mould": {
+    "disease_type": "Fungal (Secondary)",
+    "probable_cause": ["Capnodium species growing on honeydew excreted by sap-sucking insects (hoppers, mealybugs)"],
+    "prevention": ["Control the primary insect pests (hoppers, scales, mealybugs)"],
+    "treatment": ["Apply insecticidal soaps or neem oil to control insects", "The mould will wash off once the insects are gone"],
+    "about": "Sooty mould is a black, crust-like coating on leaves that blocks sunlight and reduces photosynthesis, though it does not directly infect the plant tissue.",
+    "external_links": []
+  },
+  "mango_alternaria": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Alternaria alternata fungus", "Moisture and warm temperatures"],
+    "prevention": ["Proper pruning", "Pre-harvest orchard management"],
+    "treatment": ["Post-harvest fungicidal dips", "Store fruit at optimal cool temperatures"],
+    "about": "Alternaria rot (black spot) causes small black spots on the fruit surface that can enlarge into firm, sunken lesions as the fruit ripens.",
+    "external_links": []
+  },
+  "mango_black_mould_rot": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Aspergillus niger fungus", "High temperature and humidity during ripening", "Mechanical injury to fruit"],
+    "prevention": ["Careful harvesting to avoid bruising", "Store in clean, well-ventilated areas"],
+    "treatment": ["Prompt cooling after harvest", "Hot water treatments"],
+    "about": "A post-harvest disease causing a soft, watery rot on the fruit accompanied by the production of black, powdery spore masses.",
+    "external_links": []
+  },
+  "mango_stem_end_rot": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Lasiodiplodia theobromae and Neofusicoccum species", "Endophytic fungi that activate during fruit ripening"],
+    "prevention": ["Harvest with a portion of the pedicel intact", "Avoid harvesting during wet weather"],
+    "treatment": ["Post-harvest hot water treatment", "Store fruit at cool temperatures (10-13°C)"],
+    "about": "A major post-harvest disease where a dark, spreading rot begins at the stem end of the fruit as it ripens, eventually consuming the entire mango.",
+    "external_links": []
+  },
+  "mango_healthy": {
+    "disease_type": "None",
+    "probable_cause": ["Good agricultural practices"],
+    "prevention": ["Maintain current care routine"],
+    "treatment": ["None needed"],
+    "about": "The mango leaves or fruit appear completely healthy with no signs of fungal, bacterial, or pest damage.",
+    "external_links": []
+  },
+  "apple_black_rot": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Botryosphaeria obtusa fungus", "Overwintering in dead bark, twigs, and mummified fruit"],
+    "prevention": ["Remove dead wood and mummified fruit", "Prune to open the tree canopy"],
+    "treatment": ["Apply protective fungicides from silver tip stage to harvest"],
+    "about": "Black rot causes frogeye leaf spots, limb cankers, and a firm, brown-to-black rot on the fruit, often with concentric rings.",
+    "external_links": []
+  },
+  "apple_healthy": {
+    "disease_type": "None",
+    "probable_cause": ["Good orchard management"],
+    "prevention": ["Maintain current care routine"],
+    "treatment": ["None needed"],
+    "about": "The apple foliage is healthy, displaying vibrant green color and no structural damage.",
+    "external_links": []
+  },
+  "apple_rust": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Gymnosporangium juniperi-virginianae", "Proximity to Eastern Red Cedar trees (alternate host)"],
+    "prevention": ["Remove nearby cedar trees if possible", "Plant rust-resistant apple varieties"],
+    "treatment": ["Apply protective fungicides during the period of spore release in spring"],
+    "about": "Cedar apple rust causes bright yellow-orange spots on apple leaves, which eventually develop small, tube-like structures on the underside.",
+    "external_links": []
+  },
+  "apple_scab": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Venturia inaequalis fungus", "Cool, wet spring weather"],
+    "prevention": ["Rake and destroy fallen leaves in autumn", "Plant scab-resistant cultivars"],
+    "treatment": ["Apply fungicides preemptively before rain events in spring"],
+    "about": "Apple scab appears as olive-green to black, velvety lesions on leaves and corky, scabby spots on the fruit, causing fruit deformation.",
+    "external_links": []
+  },
+  "potato_early_blight": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Alternaria solani fungus"],
+    "prevention": ["Crop rotation", "Maintain proper soil fertility", "Harvest when vines are completely dead"],
+    "treatment": ["Apply appropriate fungicides", "Destroy infected crop residue"],
+    "about": "Early blight causes dark, concentric ring spots on potato leaves and can also cause dark, sunken lesions on the tubers.",
+    "external_links": []
+  },
+  "potato_healthy": {
+    "disease_type": "None",
+    "probable_cause": ["Optimal farming conditions"],
+    "prevention": ["Maintain current care routine"],
+    "treatment": ["None needed"],
+    "about": "The potato leaves are healthy and fully functional.",
+    "external_links": []
+  },
+  "potato_late_blight": {
+    "disease_type": "Oomycete (Water Mold)",
+    "probable_cause": ["Phytophthora infestans", "Cool, wet conditions"],
+    "prevention": ["Use certified disease-free seed potatoes", "Eliminate cull piles and volunteers"],
+    "treatment": ["Apply protective and curative fungicides", "Destroy infected vines prior to harvest"],
+    "about": "The pathogen responsible for the Irish Potato Famine, causing rapid, destructive blighting of foliage and severe, reddish-brown granular tuber rot.",
+    "external_links": []
+  },
+  "rose_black_spot": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Diplocarpon rosae fungus", "Wet leaves and high humidity"],
+    "prevention": ["Plant resistant rose varieties", "Water at the base, keeping leaves dry", "Prune to open the bush center"],
+    "treatment": ["Apply fungicidal sprays (e.g., neem oil, chlorothalonil)", "Remove and dispose of infected leaves"],
+    "about": "Black spot causes circular black spots with fringed margins on leaves, leading to severe yellowing and defoliation of the rose bush.",
+    "external_links": []
+  },
+  "rose_downy_mildew": {
+    "disease_type": "Oomycete (Water Mold)",
+    "probable_cause": ["Peronospora sparsa", "Cool, highly humid conditions"],
+    "prevention": ["Improve ventilation in greenhouses", "Space plants adequately", "Reduce humidity"],
+    "treatment": ["Apply specialized oomycete fungicides", "Destroy severely infected plants"],
+    "about": "Downy mildew causes irregular, purplish-red to dark brown spots on leaves, and a sparse, grayish fuzz may appear on the undersides. Defoliation is extremely rapid.",
+    "external_links": []
+  },
+  "rose_healthy": {
+    "disease_type": "None",
+    "probable_cause": ["Optimal care"],
+    "prevention": ["Maintain current care routine"],
+    "treatment": ["None needed"],
+    "about": "The rose leaves are healthy, glossy, and free from pathogenic spots or mildews.",
+    "external_links": []
+  },
+  "rose_powdery_mildew": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Podosphaera pannosa fungus", "Warm days, cool nights, high humidity but dry leaf surfaces"],
+    "prevention": ["Ensure full sun exposure", "Avoid excessive nitrogen fertilization", "Provide good air circulation"],
+    "treatment": ["Spray with horticultural oils, sulfur, or potassium bicarbonate", "Prune heavily infected tips"],
+    "about": "Powdery mildew forms a white, powdery coating on new leaves, stems, and buds, causing the emerging foliage to become crinkled and distorted.",
+    "external_links": []
+  },
+  "rose_rust": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Phragmidium fungi", "Cool, moist weather conditions"],
+    "prevention": ["Remove old leaves in winter", "Avoid overhead watering"],
+    "treatment": ["Apply rust-specific fungicides", "Prune out infected canes"],
+    "about": "Rose rust causes small, bright orange pustules on the undersides of leaves, which later turn black. It can cause severe defoliation and weakened plants.",
+    "external_links": []
+  },
+  "corn_gray_leaf_spot": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Cercospora zeae-maydis fungus", "Prolonged high humidity and overcast days"],
+    "prevention": ["Plant resistant corn hybrids", "Crop rotation", "Tillage to bury infected crop residue"],
+    "treatment": ["Foliar fungicides applied at or shortly after tasseling"],
+    "about": "Characterized by rectangular, tan to gray lesions that are restricted by the leaf veins, giving them a blocky appearance.",
+    "external_links": []
+  },
+  "corn_healthy": {
+    "disease_type": "None",
+    "probable_cause": ["Optimal agricultural practices"],
+    "prevention": ["Maintain current care routine"],
+    "treatment": ["None needed"],
+    "about": "The corn leaves are healthy, showing rich green color without lesions or blights.",
+    "external_links": []
+  },
+  "corn_northern_leaf_blight": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Exserohilum turcicum fungus", "Moderate temperatures with heavy dew"],
+    "prevention": ["Use resistant hybrids", "Rotate crops", "Manage crop residue"],
+    "treatment": ["Apply foliar fungicides if lesions appear early in the season"],
+    "about": "This blight causes long, elliptical, cigar-shaped, grayish-green to tan lesions on the leaves.",
+    "external_links": []
+  },
+  "corn_rust": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Puccinia sorghi fungus", "Cool to moderate temperatures and high humidity"],
+    "prevention": ["Plant resistant hybrids (the most effective method)"],
+    "treatment": ["Fungicides may be used in severe cases on susceptible sweet corn varieties"],
+    "about": "Common rust causes small, oval, cinnamon-brown pustules on both upper and lower leaf surfaces, which release powdery spores.",
+    "external_links": []
+  },
+  "bell_pepper_bacterial_spot": {
+    "disease_type": "Bacterial",
+    "probable_cause": ["Xanthomonas campestris pv. vesicatoria", "Warm, wet weather", "Infected seeds"],
+    "prevention": ["Use treated, disease-free seed", "Rotate crops", "Avoid overhead irrigation"],
+    "treatment": ["Copper bactericide sprays can slow the spread", "Destroy heavily infected plants"],
+    "about": "Causes small, water-soaked, irregular spots on leaves that turn brown. Infected leaves often turn yellow and drop off.",
+    "external_links": []
+  },
+  "bell_pepper_healthy": {
+    "disease_type": "None",
+    "probable_cause": ["Good crop management"],
+    "prevention": ["Maintain current care routine"],
+    "treatment": ["None needed"],
+    "about": "The bell pepper plant is healthy and free of disease.",
+    "external_links": []
+  },
+  "grape_black_rot": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Guignardia bidwellii fungus", "Warm, wet weather during early season"],
+    "prevention": ["Prune and destroy mummified fruit and infected canes", "Ensure good canopy airflow"],
+    "treatment": ["Fungicide applications from early shoot growth through fruit set"],
+    "about": "Black rot attacks leaves, causing tan spots with dark borders, but is most destructive to the berries, turning them into hard, black, shriveled mummies.",
+    "external_links": []
+  },
+  "grape_esca": {
+    "disease_type": "Fungal Complex",
+    "probable_cause": ["Phaeomoniella chlamydospora, Phaeoacremonium minimum, and wood-rotting basidiomycetes", "Infection through pruning wounds"],
+    "prevention": ["Avoid pruning during wet weather", "Protect pruning wounds with wound sealants"],
+    "treatment": ["There is no cure; infected vines or cordons must be removed and destroyed (trunk renewal)"],
+    "about": "Esca (Measles) causes characteristic 'tiger-stripe' patterns of necrosis and chlorosis on leaves, and can cause sudden vine collapse or wood rot.",
+    "external_links": []
+  },
+  "grape_healthy": {
+    "disease_type": "None",
+    "probable_cause": ["Excellent viticulture practices"],
+    "prevention": ["Maintain current care routine"],
+    "treatment": ["None needed"],
+    "about": "The grape foliage is healthy and robust.",
+    "external_links": []
+  },
+  "grape_leaf_blight": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Pseudocercospora vitis (Isariopsis leaf spot)"],
+    "prevention": ["Remove fallen leaves", "Prune for air circulation"],
+    "treatment": ["Apply protective fungicides"],
+    "about": "Leaf blight causes irregular, reddish-brown spots that can coalesce, leading to premature defoliation and weakened vines.",
+    "external_links": []
+  },
+  "strawberry_healthy": {
+    "disease_type": "None",
+    "probable_cause": ["Optimal growing conditions"],
+    "prevention": ["Maintain current care routine"],
+    "treatment": ["None needed"],
+    "about": "The strawberry plant is lush and completely healthy.",
+    "external_links": []
+  },
+  "strawberry_leaf_scorch": {
+    "disease_type": "Fungal",
+    "probable_cause": ["Diplocarpon earlianum fungus", "Prolonged leaf wetness"],
+    "prevention": ["Keep plant canopy open for quick drying", "Avoid overhead watering", "Remove dead foliage after harvest"],
+    "treatment": ["Fungicidal sprays applied in early spring and post-harvest"],
+    "about": "Leaf scorch causes numerous irregular, purplish-to-brown spots that coalesce, causing the leaf to look burned or 'scorched', curling upward at the edges.",
+    "external_links": []
+  }
+}
