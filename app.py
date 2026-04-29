@@ -35,8 +35,7 @@ def load_ensemble(plant):
         if not os.path.exists(pth): 
             try:
                 from huggingface_hub import hf_hub_download
-                # TODO: Replace "YOUR_HF_USERNAME/pyllon-models" after you upload
-                pth = hf_hub_download(repo_id="YOUR_HF_USERNAME/pyllon-models", filename=f"{mtype}_{p}.pth", local_dir="models")
+                pth = hf_hub_download(repo_id="ktk-007/pyllon-models", filename=f"{mtype}_{p}.pth", local_dir="models")
             except Exception as e:
                 return None
                 
