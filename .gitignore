@@ -9,7 +9,7 @@ runs/
 *.pt
 *.onnx
 scratch/
-class_labels/*.json
 *.zip
 *.tar.gz
+.DS_Store
 .DS_Store
