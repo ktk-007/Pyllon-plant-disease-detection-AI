@@ -30,8 +30,18 @@ def load_ensemble(plant):
         m = timm.create_model(cfg["timm_name"], pretrained=False, num_classes=pc["num_classes"])
         m = torch.quantization.quantize_dynamic(m, {nn.Linear}, dtype=torch.qint8)
         pth = f"models/{mtype}_{p}.pth"
-        if not os.path.exists(pth): return None
+        
+        # Best Possible Solution: On-demand download from Hugging Face if missing (Streamlit Cloud)
+        if not os.path.exists(pth): 
+            try:
+                from huggingface_hub import hf_hub_download
+                # TODO: Replace "YOUR_HF_USERNAME/pyllon-models" after you upload
+                pth = hf_hub_download(repo_id="YOUR_HF_USERNAME/pyllon-models", filename=f"{mtype}_{p}.pth", local_dir="models")
+            except Exception as e:
+                return None
+                
         m.load_state_dict(torch.load(pth, map_location="cpu")); m.eval(); return m
+        
     c = load_one("convnext", plant); e = load_one("effnet", plant)
     lp = f"class_labels/{plant}_classes.json"
     labels = json.load(open(lp)) if os.path.exists(lp) else []
