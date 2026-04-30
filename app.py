@@ -94,71 +94,21 @@ def chat_with_pyllon(question, res):
     prompt = (
         f"You are Pyllon, a specialist plant pathologist AI assistant. "
         f"The user's plant is: {res['plant']}. Diagnosed disease: {res['disease']}. "
-        f"Disease context: {json.dumps(res['info'])}. "
         f"Answer the user's question helpfully and concisely in 3-5 sentences.\n\n"
         f"User: {question}"
     )
-
-    # Try Hugging Face Serverless Inference (Guaranteed to work with HF_TOKEN)
-    if HF_TOKEN and HF_TOKEN != "":
-        try:
-            from huggingface_hub import InferenceClient
-            client = InferenceClient(token=HF_TOKEN)
-            messages = [{"role":"user","content":prompt}]
-            resp = client.chat_completion(
-                model="mistralai/Mistral-7B-Instruct-v0.3",
-                messages=messages,
-                max_tokens=400
-            )
-            return resp.choices[0].message.content
-        except Exception:
-            pass
-
-    # Try Gemini (Stable google-generativeai)
-    if GEMINI_KEY and GEMINI_KEY != "":
-        try:
-            import google.generativeai as genai
-            genai.configure(api_key=GEMINI_KEY)
-            # Try multiple model names for maximum stability
-            for model_name in ["gemini-1.5-flash-latest", "gemini-1.5-pro", "gemini-pro"]:
-                try:
-                    model = genai.GenerativeModel(model_name)
-                    resp = model.generate_content(prompt)
-                    return resp.text
-                except:
-                    continue
-        except Exception:
-            pass
-
-    # Try Groq (Fast & Free)
-    if GROQ_KEY and GROQ_KEY != "":
-        try:
-            from groq import Groq
-            client = Groq(api_key=GROQ_KEY)
-            resp = client.chat.completions.create(
-                model="llama3-70b-8192",
-                messages=[{"role":"user","content":prompt}],
-                max_tokens=400
-            )
-            return resp.choices[0].message.content
-        except Exception:
-            pass
-
-    # Try OpenRouter (DeepSeek) - Final reliable backup
-    if OR_KEY:
-        try:
-            from openai import OpenAI
-            client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=OR_KEY)
-            resp = client.chat.completions.create(
-                model="deepseek/deepseek-chat",
-                messages=[{"role":"user","content":prompt}],
-                max_tokens=400
-            )
-            return resp.choices[0].message.content
-        except Exception as e:
-            return f"⚠️ AI Error: All providers failed. Last error: {e}"
     
-    return "⚠️ AI Error: No API keys configured. Please check Streamlit Secrets."
+    try:
+        from groq import Groq
+        client = Groq(api_key=GROQ_KEY)
+        resp = client.chat.completions.create(
+            model="llama3-8b-8192",
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=400
+        )
+        return resp.choices[0].message.content
+    except Exception as e:
+        return f"⚠️ Error: {e}"
 
     return "⚠️ No AI key configured. See below for how to get a free key."
 
