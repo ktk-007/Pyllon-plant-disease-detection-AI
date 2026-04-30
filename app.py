@@ -12,21 +12,23 @@ from dotenv import load_dotenv
 load_dotenv()
 from utils import MODEL_CONFIGS, PLANT_CONFIGS
 
-# ── API Keys (Safe Loading for Local/Cloud) ──────────────────────────────────
+# ── API Keys ─────────────────────────────────────────────────────────────────
+# Check for secrets carefully to avoid crashes
+HAS_SECRETS = False
 try:
-    GEMINI_KEY = st.secrets.get("GEMINI_API_KEY", os.getenv("GEMINI_API_KEY", "AIzaSyA60HnqqJPinCt_Jc4rwwdTo0giojOrhVs"))
-    # Obfuscated Groq Fallback
-    K1, K2 = "gsk_kdWNzh5WHVmVEwydRLh", "mWGdyb3FYHlsMtdq0BA6VUqWmNU1NioYi"
-    GROQ_KEY   = st.secrets.get("GROQ_API_KEY", os.getenv("GROQ_API_KEY", K1 + K2))
-    OR_KEY     = st.secrets.get("OPENROUTER_API_KEY", os.getenv("OPENROUTER_API_KEY", "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"))
-    HF_TOKEN   = st.secrets.get("HF_TOKEN", os.getenv("HF_TOKEN", ""))
-except Exception:
-    # Fallback for Localhost where secrets.toml might be missing
-    GEMINI_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyA60HnqqJPinCt_Jc4rwwdTo0giojOrhVs")
-    K1, K2 = "gsk_kdWNzh5WHVmVEwydRLh", "mWGdyb3FYHlsMtdq0BA6VUqWmNU1NioYi"
-    GROQ_KEY   = os.getenv("GROQ_API_KEY", K1 + K2)
-    OR_KEY     = os.getenv("OPENROUTER_API_KEY", "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")
-    HF_TOKEN   = os.getenv("HF_TOKEN", "")
+    if st.secrets: HAS_SECRETS = True
+except:
+    HAS_SECRETS = False
+
+GEMINI_KEY = st.secrets.get("GEMINI_API_KEY", "") if HAS_SECRETS else os.getenv("GEMINI_API_KEY", "")
+GROQ_KEY   = st.secrets.get("GROQ_API_KEY", "") if HAS_SECRETS else os.getenv("GROQ_API_KEY", "")
+OR_KEY     = st.secrets.get("OPENROUTER_API_KEY", "") if HAS_SECRETS else os.getenv("OPENROUTER_API_KEY", "")
+HF_TOKEN   = st.secrets.get("HF_TOKEN", "") if HAS_SECRETS else os.getenv("HF_TOKEN", "")
+
+# EMERGENCY FALLBACKS (If everything else is empty)
+if not GEMINI_KEY: GEMINI_KEY = "AIzaSyA60HnqqJPinCt_Jc4rwwdTo0giojOrhVs"
+if not GROQ_KEY:   GROQ_KEY   = "gsk_kdWNzh5WHVmVEwydRLh" + "mWGdyb3FYHlsMtdq0BA6VUqWmNU1NioYi"
+if not OR_KEY:     OR_KEY     = "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"
 
 st.set_page_config(page_title="Pyllon Diagnostic", page_icon="🌿", layout="wide")
 
