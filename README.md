@@ -162,7 +162,7 @@ The web app is dark-themed with the following workflow:
 | Augmentation | Albumentations |
 | Quantisation | `torch.quantization.quantize_dynamic` |
 | Web app | Streamlit |
-| Conversational AI | Anthropic Claude Haiku |
+| Conversational AI | groq llama3 |
 | Model hosting | Streamlit resource caching |
 
 ---
