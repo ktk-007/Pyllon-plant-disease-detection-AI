@@ -99,9 +99,26 @@ def chat_with_pyllon(question, res):
         f"User: {question}"
     )
 
+    # Try Hugging Face Serverless Inference (Guaranteed to work with HF_TOKEN)
+    if HF_TOKEN and HF_TOKEN != "":
+        try:
+            from huggingface_hub import InferenceClient
+            client = InferenceClient(token=HF_TOKEN)
+            messages = [{"role":"user","content":prompt}]
+            resp = client.chat_completion(
+                model="mistralai/Mistral-7B-Instruct-v0.3",
+                messages=messages,
+                max_tokens=400
+            )
+            return resp.choices[0].message.content
+        except Exception:
+            pass
+
     # Try Gemini (Stable google-generativeai)
     if GEMINI_KEY and GEMINI_KEY != "":
         try:
+            import google.generativeai as genai
+            genai.configure(api_key=GEMINI_KEY)
             # Try multiple model names for maximum stability
             for model_name in ["gemini-1.5-flash-latest", "gemini-1.5-pro", "gemini-pro"]:
                 try:
