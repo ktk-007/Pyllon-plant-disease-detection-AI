@@ -12,14 +12,21 @@ from dotenv import load_dotenv
 load_dotenv()
 from utils import MODEL_CONFIGS, PLANT_CONFIGS
 
-# ── API Keys ─────────────────────────────────────────────────────────────────
-# Priority: st.secrets (Cloud) > os.getenv (Local .env) > Hardcoded (Fallback)
-GEMINI_KEY = st.secrets.get("GEMINI_API_KEY", os.getenv("GEMINI_API_KEY", "AIzaSyA60HnqqJPinCt_Jc4rwwdTo0giojOrhVs"))
-# Obfuscated Groq Fallback (Bypasses Push Protection)
-K1, K2 = "gsk_kdWNzh5WHVmVEwydRLh", "mWGdyb3FYHlsMtdq0BA6VUqWmNU1NioYi"
-GROQ_KEY   = st.secrets.get("GROQ_API_KEY", os.getenv("GROQ_API_KEY", K1 + K2))
-OR_KEY     = st.secrets.get("OPENROUTER_API_KEY", os.getenv("OPENROUTER_API_KEY", "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"))
-HF_TOKEN   = st.secrets.get("HF_TOKEN", os.getenv("HF_TOKEN", ""))
+# ── API Keys (Safe Loading for Local/Cloud) ──────────────────────────────────
+try:
+    GEMINI_KEY = st.secrets.get("GEMINI_API_KEY", os.getenv("GEMINI_API_KEY", "AIzaSyA60HnqqJPinCt_Jc4rwwdTo0giojOrhVs"))
+    # Obfuscated Groq Fallback
+    K1, K2 = "gsk_kdWNzh5WHVmVEwydRLh", "mWGdyb3FYHlsMtdq0BA6VUqWmNU1NioYi"
+    GROQ_KEY   = st.secrets.get("GROQ_API_KEY", os.getenv("GROQ_API_KEY", K1 + K2))
+    OR_KEY     = st.secrets.get("OPENROUTER_API_KEY", os.getenv("OPENROUTER_API_KEY", "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"))
+    HF_TOKEN   = st.secrets.get("HF_TOKEN", os.getenv("HF_TOKEN", ""))
+except Exception:
+    # Fallback for Localhost where secrets.toml might be missing
+    GEMINI_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyA60HnqqJPinCt_Jc4rwwdTo0giojOrhVs")
+    K1, K2 = "gsk_kdWNzh5WHVmVEwydRLh", "mWGdyb3FYHlsMtdq0BA6VUqWmNU1NioYi"
+    GROQ_KEY   = os.getenv("GROQ_API_KEY", K1 + K2)
+    OR_KEY     = os.getenv("OPENROUTER_API_KEY", "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")
+    HF_TOKEN   = os.getenv("HF_TOKEN", "")
 
 st.set_page_config(page_title="Pyllon Diagnostic", page_icon="🌿", layout="wide")
 
