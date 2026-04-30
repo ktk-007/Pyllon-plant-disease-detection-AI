@@ -12,6 +12,7 @@ matplotlib
 seaborn
 tensorboard
 google-genai>=0.8.0
+google-generativeai
 groq
 python-dotenv
 huggingface_hub

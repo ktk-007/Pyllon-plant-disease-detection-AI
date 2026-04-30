@@ -87,25 +87,17 @@ def chat_with_pyllon(question, res):
         f"User: {question}"
     )
 
-    # Try Gemini (new google.genai SDK)
+    # Try Gemini (Stable google-generativeai)
     if GEMINI_KEY and GEMINI_KEY != "":
         try:
-            from google import genai as gnai
-            client = gnai.Client(api_key=GEMINI_KEY)
-            last_err = None
-            for model in ["gemini-2.0-flash", "gemini-1.5-flash"]:
-                try:
-                    resp = client.models.generate_content(model=model, contents=prompt)
-                    return resp.text
-                except Exception as e:
-                    last_err = e
-                    continue
-            
+            import google.generativeai as genai
+            genai.configure(api_key=GEMINI_KEY)
+            model = genai.GenerativeModel("gemini-1.5-flash")
+            resp = model.generate_content(prompt)
+            return resp.text
+        except Exception as e:
             if not GROQ_KEY:
-                return f"⚠️ Gemini AI Error: {last_err}"
-        except Exception as ex:
-            if not GROQ_KEY:
-                return f"⚠️ SDK Error: {ex}"
+                return f"⚠️ Gemini AI Error: {e}"
 
     # Try Groq (100% free, no quota issues)
     if GROQ_KEY and GROQ_KEY != "":
@@ -113,7 +105,7 @@ def chat_with_pyllon(question, res):
             from groq import Groq
             client = Groq(api_key=GROQ_KEY)
             resp = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="llama3-70b-8192",
                 messages=[{"role":"user","content":prompt}],
                 max_tokens=400
             )
@@ -142,17 +134,14 @@ def generate_report_ai(plant, disease, static_info):
     
     if GEMINI_KEY:
         try:
-            from google import genai as gnai
-            client = gnai.Client(api_key=GEMINI_KEY)
-            for model in ["gemini-2.0-flash", "gemini-1.5-flash"]:
-                try:
-                    resp = client.models.generate_content(model=model, contents=prompt)
-                    txt = resp.text.strip().removeprefix("```json").removesuffix("```").strip()
-                    data = json.loads(txt)
-                    data["external_links"] = static_info.get("external_links", [{"label": f"Search {disease} treatments", "url": f"https://www.google.com/search?q={plant}+{disease}+treatment"}])
-                    return data
-                except Exception:
-                    continue
+            import google.generativeai as genai
+            genai.configure(api_key=GEMINI_KEY)
+            model = genai.GenerativeModel("gemini-1.5-flash")
+            resp = model.generate_content(prompt)
+            txt = resp.text.strip().removeprefix("```json").removesuffix("```").strip()
+            data = json.loads(txt)
+            data["external_links"] = static_info.get("external_links", [])
+            return data
         except Exception:
             pass
 
@@ -160,7 +149,7 @@ def generate_report_ai(plant, disease, static_info):
         try:
             from groq import Groq
             client = Groq(api_key=GROQ_KEY)
-            resp = client.chat.completions.create(model="llama-3.3-70b-versatile", messages=[{"role":"user","content":prompt}])
+            resp = client.chat.completions.create(model="llama3-70b-8192", messages=[{"role":"user","content":prompt}])
             txt = resp.choices[0].message.content.strip().removeprefix("```json").removesuffix("```").strip()
             data = json.loads(txt)
             data["external_links"] = static_info.get("external_links", [])
@@ -279,11 +268,15 @@ if st.session_state.res:
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Build info strings safely (no nested f-strings) ────────────────────
+    # ── Build info strings safely ────────────────────
+    dtype        = info.get("disease_type", "Unknown")
     about_short  = info.get("about", "")[:200]
     about_full   = info.get("about", "")
-    if not about_short:  about_short = f"A disease affecting the {res['plant']} plant. Upload more images or check diseases_info.json for details."
-    if not about_full:   about_full  = about_short
+    
+    if not about_full:
+        about_full = f"A condition affecting the {res['plant']} plant. Check additional resources for confirmation."
+    if not about_short:
+        about_short = about_full[:200]
 
     causes_html  = "".join(f"<li>{x}</li>" for x in info.get("probable_cause", []))
     prevents_html= "".join(f"<li>{x}</li>" for x in info.get("prevention", []))
@@ -329,7 +322,8 @@ if st.session_state.res:
         <div class='info-grid'>
             <div class='grid-col'>
                 <div class='grid-header' style='color:#58a6ff;'>&#128300; Disease Type</div>
-                <p style='color:#8b949e;font-size:0.88rem;line-height:1.65;'>{about_short}...</p>
+                <p style='color:#ffffff;font-weight:600;margin-bottom:8px;'>{dtype}</p>
+                <p style='color:#8b949e;font-size:0.85rem;line-height:1.5;'>{about_short}...</p>
             </div>
             <div class='grid-col'>
                 <div class='grid-header' style='color:#d29922;'>&#9888; Probable Cause</div>
