@@ -93,7 +93,7 @@ def chat_with_pyllon(question, res):
             from google import genai as gnai
             client = gnai.Client(api_key=GEMINI_KEY)
             last_err = None
-            for model in ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]:
+            for model in ["gemini-2.0-flash", "gemini-1.5-flash"]:
                 try:
                     resp = client.models.generate_content(model=model, contents=prompt)
                     return resp.text
@@ -113,7 +113,7 @@ def chat_with_pyllon(question, res):
             from groq import Groq
             client = Groq(api_key=GROQ_KEY)
             resp = client.chat.completions.create(
-                model="llama3-8b-8192",
+                model="llama-3.3-70b-versatile",
                 messages=[{"role":"user","content":prompt}],
                 max_tokens=400
             )
@@ -144,7 +144,7 @@ def generate_report_ai(plant, disease, static_info):
         try:
             from google import genai as gnai
             client = gnai.Client(api_key=GEMINI_KEY)
-            for model in ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]:
+            for model in ["gemini-2.0-flash", "gemini-1.5-flash"]:
                 try:
                     resp = client.models.generate_content(model=model, contents=prompt)
                     txt = resp.text.strip().removeprefix("```json").removesuffix("```").strip()
@@ -160,7 +160,7 @@ def generate_report_ai(plant, disease, static_info):
         try:
             from groq import Groq
             client = Groq(api_key=GROQ_KEY)
-            resp = client.chat.completions.create(model="llama3-8b-8192", messages=[{"role":"user","content":prompt}])
+            resp = client.chat.completions.create(model="llama-3.3-70b-versatile", messages=[{"role":"user","content":prompt}])
             txt = resp.choices[0].message.content.strip().removeprefix("```json").removesuffix("```").strip()
             data = json.loads(txt)
             data["external_links"] = static_info.get("external_links", [])
