@@ -5,7 +5,6 @@ timm
 albumentations
 opencv-python-headless
 streamlit
-anthropic
 scikit-learn
 numpy
 Pillow

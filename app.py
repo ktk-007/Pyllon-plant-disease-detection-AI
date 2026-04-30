@@ -13,8 +13,10 @@ load_dotenv()
 from utils import MODEL_CONFIGS, PLANT_CONFIGS
 
 # ── API Keys ─────────────────────────────────────────────────────────────────
-GEMINI_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyA60HnqqJPinCt_Jc4rwwdTo0giojOrhVs")
-GROQ_KEY   = os.getenv("GROQ_API_KEY", "")   # Optional fallback
+# Priority: st.secrets (Cloud) > os.getenv (Local .env) > Hardcoded (Fallback)
+GEMINI_KEY = st.secrets.get("GEMINI_API_KEY", os.getenv("GEMINI_API_KEY", "AIzaSyA60HnqqJPinCt_Jc4rwwdTo0giojOrhVs"))
+GROQ_KEY   = st.secrets.get("GROQ_API_KEY", os.getenv("GROQ_API_KEY", ""))
+HF_TOKEN   = st.secrets.get("HF_TOKEN", os.getenv("HF_TOKEN", ""))
 
 st.set_page_config(page_title="Pyllon Diagnostic", page_icon="🌿", layout="wide")
 
@@ -35,7 +37,12 @@ def load_ensemble(plant):
         if not os.path.exists(pth): 
             try:
                 from huggingface_hub import hf_hub_download
-                pth = hf_hub_download(repo_id="ktk-007/pyllon-models", filename=f"{mtype}_{p}.pth", local_dir="models")
+                pth = hf_hub_download(
+                    repo_id="ktk-007/pyllon-models", 
+                    filename=f"{mtype}_{p}.pth", 
+                    local_dir="models",
+                    token=HF_TOKEN if HF_TOKEN else None
+                )
             except Exception as e:
                 return None
                 
