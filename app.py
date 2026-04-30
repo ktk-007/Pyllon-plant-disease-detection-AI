@@ -162,6 +162,24 @@ def generate_report_ai(plant, disease, static_info):
     }}
     """
     
+    if HF_TOKEN:
+        try:
+            from huggingface_hub import InferenceClient
+            client = InferenceClient(token=HF_TOKEN)
+            resp = client.chat_completion(
+                model="mistralai/Mistral-7B-Instruct-v0.3",
+                messages=[{"role":"user","content":prompt}],
+                max_tokens=500
+            )
+            txt = resp.choices[0].message.content.strip()
+            if "```json" in txt:
+                txt = txt.split("```json")[1].split("```")[0].strip()
+            data = json.loads(txt)
+            data["external_links"] = static_info.get("external_links", [])
+            return data
+        except Exception:
+            pass
+            
     if GEMINI_KEY:
         try:
             import google.generativeai as genai
