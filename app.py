@@ -96,7 +96,21 @@ def chat_with_pyllon(question, res):
             model = genai.GenerativeModel("gemini-1.5-flash-latest")
             resp = model.generate_content(prompt)
             return resp.text
-        except Exception as e:
+        except Exception:
+            pass
+
+    # Try Groq (Fast & Free)
+    if GROQ_KEY and GROQ_KEY != "":
+        try:
+            from groq import Groq
+            client = Groq(api_key=GROQ_KEY)
+            resp = client.chat.completions.create(
+                model="llama3-70b-8192",
+                messages=[{"role":"user","content":prompt}],
+                max_tokens=400
+            )
+            return resp.choices[0].message.content
+        except Exception:
             pass
 
     # Try OpenRouter (DeepSeek) - Final reliable backup
@@ -111,21 +125,9 @@ def chat_with_pyllon(question, res):
             )
             return resp.choices[0].message.content
         except Exception as e:
-            return f"⚠️ Chat Error: All AI providers failed. Check your API keys in Streamlit Secrets."
-
-    # Try Groq (100% free, no quota issues)
-    if GROQ_KEY and GROQ_KEY != "":
-        try:
-            from groq import Groq
-            client = Groq(api_key=GROQ_KEY)
-            resp = client.chat.completions.create(
-                model="llama3-70b-8192",
-                messages=[{"role":"user","content":prompt}],
-                max_tokens=400
-            )
-            return resp.choices[0].message.content
-        except Exception as ex:
-            return f"⚠️ Groq Error: {ex}"
+            return f"⚠️ AI Error: All providers failed. Last error: {e}"
+    
+    return "⚠️ AI Error: No API keys configured. Please check Streamlit Secrets."
 
     return "⚠️ No AI key configured. See below for how to get a free key."
 
