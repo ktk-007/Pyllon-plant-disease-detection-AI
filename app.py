@@ -92,7 +92,7 @@ def chat_with_pyllon(question, res):
         try:
             import google.generativeai as genai
             genai.configure(api_key=GEMINI_KEY)
-            model = genai.GenerativeModel("gemini-1.5-flash")
+            model = genai.GenerativeModel("gemini-1.5-flash-latest")
             resp = model.generate_content(prompt)
             return resp.text
         except Exception as e:
@@ -136,7 +136,7 @@ def generate_report_ai(plant, disease, static_info):
         try:
             import google.generativeai as genai
             genai.configure(api_key=GEMINI_KEY)
-            model = genai.GenerativeModel("gemini-1.5-flash")
+            model = genai.GenerativeModel("gemini-1.5-flash-latest")
             resp = model.generate_content(prompt)
             txt = resp.text.strip().removeprefix("```json").removesuffix("```").strip()
             data = json.loads(txt)
@@ -149,7 +149,11 @@ def generate_report_ai(plant, disease, static_info):
         try:
             from groq import Groq
             client = Groq(api_key=GROQ_KEY)
-            resp = client.chat.completions.create(model="llama3-70b-8192", messages=[{"role":"user","content":prompt}])
+            resp = client.chat.completions.create(
+                model="llama3-70b-8192", 
+                messages=[{"role":"user","content":prompt}],
+                response_format={"type": "json_object"}
+            )
             txt = resp.choices[0].message.content.strip().removeprefix("```json").removesuffix("```").strip()
             data = json.loads(txt)
             data["external_links"] = static_info.get("external_links", [])
