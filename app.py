@@ -129,14 +129,14 @@ def generate_report_ai(plant, disease, static_info):
         
     prompt = f"""
     Act as an expert agricultural pathologist diagnosing {plant} {disease}.
-    Provide highly specific, dense, real-world data (specific chemical names, exact NPK ratios, exact biologicals) BUT keep every single bullet point extremely short and punchy (maximum 10-12 words per point). DO NOT write long paragraphs.
+    Provide highly specific, dense, professional-grade data (specific chemical names, exact NPK ratios, exact biological control species). Each point should be detailed and informative (approx 20-30 words each).
     
     Return EXACTLY a JSON dictionary with these keys (no markdown formatting, no backticks, just raw JSON):
     {{
-        "about": "A concise, professional 2-sentence overview of the biological nature and impact of the disease.",
-        "probable_cause": ["<12 words: e.g., Podosphaera pannosa fungus>", "<12 words: e.g., High humidity (90%+) and poor airflow>"],
-        "prevention": ["<12 words: e.g., Prune canopy for airflow>", "<12 words: e.g., Plant disease-resistant cultivars>", "<12 words: e.g., Avoid overhead watering>"],
-        "treatment": ["Chemical: <12 words: e.g., Apply Myclobutanil or Propiconazole>", "Organic: <12 words: e.g., Spray Neem oil or Potassium Bicarbonate>", "Nutrient: <12 words: e.g., Reduce Nitrogen, boost Potassium (0-10-10)>"]
+        "about": "A detailed, professional 3-sentence overview of the biological nature and impact of the disease.",
+        "probable_cause": ["<Detailed point: e.g., Infection by Podosphaera pannosa fungus favored by 15-27°C temperatures>", "<Detailed point: e.g., High relative humidity (above 85%) during night cycles followed by dry days>"],
+        "prevention": ["<Detailed point: e.g., Prune interior canopy to achieve 30% light penetration and airflow>", "<Detailed point: e.g., Maintain soil pH between 6.0-6.5 to optimize plant immune response>", "<Detailed point: e.g., Strictly avoid overhead irrigation to keep leaf surfaces dry during infection windows>"],
+        "treatment": ["Chemical: <Detailed point: e.g., Apply Myclobutanil (Eagle 20EW) or Propiconazole at 7-14 day intervals>", "Organic: <Detailed point: e.g., Spray 1% Potassium Bicarbonate solution or refined Neem Oil (0.5%)>", "Nutrient: <Detailed point: e.g., Switch to a low-nitrogen, high-potassium fertilizer (e.g., 5-10-15) to toughen cell walls>"]
     }}
     """
     
@@ -241,7 +241,8 @@ if predict_btn and files:
             dk, real_conf = run_diag(c, e, imgs, labels)
             
             dk_name = dk.split("__")[-1].replace("_"," ").title() if dk else "Unknown"
-            base_info = DB.get(dk, {})
+            # Fix mapping: labels use '__' but database uses '_'
+            base_info = DB.get(dk.replace("__", "_"), {})
             
             with st.spinner("AI is compiling a detailed treatment plan (pesticides & fertilizers)..."):
                 dynamic_info = generate_report_ai(pname, dk_name, base_info)
