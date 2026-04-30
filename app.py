@@ -102,7 +102,7 @@ def chat_with_pyllon(question, res):
         from groq import Groq
         client = Groq(api_key=GROQ_KEY)
         resp = client.chat.completions.create(
-            model="llama3-8b-8192",
+            model="llama-3.3-70b-versatile",
             messages=[{"role": "user", "content": prompt}],
             max_tokens=400
         )
@@ -181,7 +181,7 @@ def generate_report_ai(plant, disease, static_info):
             from groq import Groq
             client = Groq(api_key=GROQ_KEY)
             resp = client.chat.completions.create(
-                model="llama3-70b-8192", 
+                model="llama-3.3-70b-versatile", 
                 messages=[{"role":"user","content":prompt}],
                 response_format={"type": "json_object"}
             )
