@@ -14,5 +14,6 @@ tensorboard
 google-genai>=0.8.0
 google-generativeai
 groq
+openai
 python-dotenv
 huggingface_hub

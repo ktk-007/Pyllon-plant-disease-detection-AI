@@ -16,6 +16,7 @@ from utils import MODEL_CONFIGS, PLANT_CONFIGS
 # Priority: st.secrets (Cloud) > os.getenv (Local .env) > Hardcoded (Fallback)
 GEMINI_KEY = st.secrets.get("GEMINI_API_KEY", os.getenv("GEMINI_API_KEY", "AIzaSyA60HnqqJPinCt_Jc4rwwdTo0giojOrhVs"))
 GROQ_KEY   = st.secrets.get("GROQ_API_KEY", os.getenv("GROQ_API_KEY", ""))
+OR_KEY     = st.secrets.get("OPENROUTER_API_KEY", os.getenv("OPENROUTER_API_KEY", "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"))
 HF_TOKEN   = st.secrets.get("HF_TOKEN", os.getenv("HF_TOKEN", ""))
 
 st.set_page_config(page_title="Pyllon Diagnostic", page_icon="🌿", layout="wide")
@@ -96,8 +97,21 @@ def chat_with_pyllon(question, res):
             resp = model.generate_content(prompt)
             return resp.text
         except Exception as e:
-            if not GROQ_KEY:
-                return f"⚠️ Gemini AI Error: {e}"
+            pass
+
+    # Try OpenRouter (DeepSeek) - Final reliable backup
+    if OR_KEY:
+        try:
+            from openai import OpenAI
+            client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=OR_KEY)
+            resp = client.chat.completions.create(
+                model="deepseek/deepseek-chat",
+                messages=[{"role":"user","content":prompt}],
+                max_tokens=400
+            )
+            return resp.choices[0].message.content
+        except Exception as e:
+            return f"⚠️ Chat Error: All AI providers failed. Check your API keys in Streamlit Secrets."
 
     # Try Groq (100% free, no quota issues)
     if GROQ_KEY and GROQ_KEY != "":
@@ -139,6 +153,22 @@ def generate_report_ai(plant, disease, static_info):
             model = genai.GenerativeModel("gemini-1.5-flash-latest")
             resp = model.generate_content(prompt)
             txt = resp.text.strip().removeprefix("```json").removesuffix("```").strip()
+            data = json.loads(txt)
+            data["external_links"] = static_info.get("external_links", [])
+            return data
+        except Exception:
+            pass
+            
+    if OR_KEY:
+        try:
+            from openai import OpenAI
+            client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=OR_KEY)
+            resp = client.chat.completions.create(
+                model="deepseek/deepseek-chat",
+                messages=[{"role":"user","content":prompt}],
+                response_format={"type": "json_object"}
+            )
+            txt = resp.choices[0].message.content.strip().removeprefix("```json").removesuffix("```").strip()
             data = json.loads(txt)
             data["external_links"] = static_info.get("external_links", [])
             return data
